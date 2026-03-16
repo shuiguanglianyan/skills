@@ -6,27 +6,20 @@
 - 已安装 Docker 与 Docker Compose Plugin
 - 已开放端口：`80`（或你自定义的 Web 端口）
 
-## 1) 准备目录
+## 1) 获取代码并准备目录
 
 ```bash
-mkdir -p /opt/spug-rebuild && cd /opt/spug-rebuild
+git clone git@github.com:shuiguanglianyan/skills.git /opt/spug-rebuild
+cd /opt/spug-rebuild
+# 可选：切换到你的重写分支
+# git checkout -b feat/spug-mvp
 ```
 
 ## 2) 放置编排文件与环境变量
 
 ```bash
-cp docker-compose.minimal.yml docker-compose.yml
-cat > .env <<'EOT'
-MYSQL_ROOT_PASSWORD=change_me_root
-MYSQL_DATABASE=spug
-MYSQL_USER=spug
-MYSQL_PASSWORD=change_me_db
-REDIS_PASSWORD=change_me_redis
-APP_SECRET_KEY=change_me_secret
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=change_me_admin
-WEB_PORT=80
-EOT
+cp spug-rebuild-deploy/assets/docker-compose.minimal.yml docker-compose.yml
+bash spug-rebuild-deploy/scripts/render_env.sh .env
 ```
 
 ## 3) 启动服务
@@ -47,7 +40,7 @@ docker compose exec backend python -m app.bootstrap --admin "$ADMIN_USERNAME" --
 
 ```bash
 docker compose ps
-curl -f http://127.0.0.1:${WEB_PORT}/health
+source .env && curl -f http://127.0.0.1:${WEB_PORT}/health
 ```
 
 浏览器访问 `http://<服务器IP>:${WEB_PORT}`，用管理员账号登录。
