@@ -17,6 +17,8 @@ APP_SECRET_KEY=${APP_SECRET_KEY:-$(rand)}
 ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
 ADMIN_PASSWORD=${ADMIN_PASSWORD:-$(rand)}
 WEB_PORT=${WEB_PORT:-80}
+SPUG_BACKEND_IMAGE=${SPUG_BACKEND_IMAGE:-ghcr.io/shuiguanglianyan/spug-rebuild-backend:latest}
+SPUG_FRONTEND_IMAGE=${SPUG_FRONTEND_IMAGE:-ghcr.io/shuiguanglianyan/spug-rebuild-frontend:latest}
 ENV
 
 echo "[OK] wrote $OUT_FILE"

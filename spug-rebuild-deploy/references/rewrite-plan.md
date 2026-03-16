@@ -1,5 +1,11 @@
 # Spug 重写计划模板（MVP 优先）
 
+> 若用户给出了目标仓库（例如 `git@github.com:shuiguanglianyan/skills.git`），请在计划开头补充：
+>
+> - 目标仓库与分支：`main` / `feat/spug-mvp`（示例）
+> - 目录建议：`backend/`、`frontend/`、`deploy/`、`docs/`
+> - 提交策略：按“鉴权、主机、执行、审计、部署”拆分 5~8 个可回滚提交
+
 ## 1. 功能映射表
 
 | 领域 | 子能力 | MVP 是否实现 | 说明 |
@@ -36,6 +42,14 @@
 3. Day 5：日志与审计
 4. Day 6：前端页面打通
 5. Day 7：容器化与部署验收
+
+## 4.1 仓库落位建议（适用于指定 Git 仓库）
+
+- `backend/app/`：API、模型、迁移、任务队列
+- `frontend/src/`：登录、主机、任务、审计页面
+- `deploy/docker-compose.yml`：单机部署编排
+- `deploy/.env.example`：环境变量模板
+- `docs/mvp-scope.md`：当前范围与后续增量清单
 
 ## 5. 风险与应对
 

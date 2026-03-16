@@ -20,7 +20,7 @@ services:
       - redis_data:/data
 
   backend:
-    image: ghcr.io/example/spug-rebuild-backend:latest
+    image: ${SPUG_BACKEND_IMAGE:-ghcr.io/shuiguanglianyan/spug-rebuild-backend:latest}
     restart: always
     depends_on:
       - mysql
@@ -39,7 +39,7 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
 
   worker:
-    image: ghcr.io/example/spug-rebuild-backend:latest
+    image: ${SPUG_BACKEND_IMAGE:-ghcr.io/shuiguanglianyan/spug-rebuild-backend:latest}
     restart: always
     command: ["celery", "-A", "app.worker", "worker", "-l", "info"]
     depends_on:
@@ -56,7 +56,7 @@ services:
       APP_SECRET_KEY: ${APP_SECRET_KEY}
 
   web:
-    image: ghcr.io/example/spug-rebuild-frontend:latest
+    image: ${SPUG_FRONTEND_IMAGE:-ghcr.io/shuiguanglianyan/spug-rebuild-frontend:latest}
     restart: always
     depends_on:
       - backend
