@@ -1,0 +1,10 @@
+region             = "cn-beijing"
+zone               = "cn-beijing-a"
+cluster_name       = "tf-created-vke-serverless"
+kubernetes_version = "1.26"
+vpc_cidr           = "172.16.0.0/16"
+subnet_cidr        = "172.16.0.0/24"
+
+api_server_public_access_enabled = true
+api_server_bandwidth             = 10
+delete_protection_enabled        = true
